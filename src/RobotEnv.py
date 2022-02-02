@@ -7,12 +7,13 @@ Date: 30/01/2022
 
 from robosuite.models import MujocoWorldBase
 from robosuite.models.robots import Panda
+from robosuite.models.robots import UR5e
 from robosuite.models.grippers import gripper_factory
 from robosuite.models.arenas import TableArena
 from robosuite.models.objects import BallObject
 from robosuite.utils.mjcf_utils import new_joint
 from mujoco_py import MjSim, MjViewer
-
+from robosuite import load_controller_config
 
 class robotEnv():
 
@@ -46,10 +47,10 @@ class robotEnv():
 
     def create_robot(self):
         # Create robot model (in this case, a panda robot)
-        mujoco_robot = Panda()
+        mujoco_robot = UR5e()
 
         # Create a gripper and attach it to the roibot
-        gripper = gripper_factory('PandaGripper')
+        gripper = gripper_factory('Robotiq85Gripper')
         mujoco_robot.add_gripper(gripper)
 
         # Add robot to world
